@@ -16,7 +16,7 @@ Wire this into the root URLConf this way::
 
 """
 
-from django.conf.urls import url
+from django.urls import re_path as url
 
 from . import views
 

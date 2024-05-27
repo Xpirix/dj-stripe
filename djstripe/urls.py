@@ -15,7 +15,7 @@ Call from url tag::
 
     {% url "djstripe:subscribe" %}
 """
-from django.conf.urls import url
+from django.urls import re_path as url
 
 from . import settings as app_settings
 from . import views

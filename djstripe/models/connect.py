@@ -86,7 +86,7 @@ class Account(StripeModel):
     )
     # deprecated, will be removed in 2.2.
     # see https://stripe.com/docs/upgrades#2019-02-19
-    debit_negative_balances = models.NullBooleanField(
+    debit_negative_balances = models.BooleanField(
         null=True,
         blank=True,
         default=False,

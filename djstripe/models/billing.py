@@ -168,10 +168,11 @@ class Invoice(StripeModel):
         null=True,  # XXX: This is not nullable, but it's a new field
         help_text="The amount remaining, (as decimal), that is due.",
     )
-    auto_advance = models.NullBooleanField(
+    auto_advance = models.BooleanField(
         help_text="Controls whether Stripe will perform automatic collection of the "
         "invoice. When false, the invoice’s state will not automatically "
-        "advance without an explicit action."
+        "advance without an explicit action.",
+        null=True
     )
     application_fee_amount = StripeDecimalCurrencyAmountField(
         null=True,
@@ -212,7 +213,7 @@ class Invoice(StripeModel):
         help_text="The latest charge generated for this invoice, if any.",
     )
     # deprecated, will be removed in 2.2
-    closed = models.NullBooleanField(
+    closed = models.BooleanField(
         default=False,
         help_text="Whether or not the invoice is still trying to collect payment."
         " An invoice is closed if it's either paid or it has been marked closed. "
@@ -239,7 +240,7 @@ class Invoice(StripeModel):
         "If the invoice has not been attempted yet, this will be null.",
     )
     # deprecated, will be removed in 2.2
-    forgiven = models.NullBooleanField(
+    forgiven = models.BooleanField(
         default=False,
         help_text="Whether or not the invoice has been forgiven. "
         "Forgiving an invoice instructs us to update the subscription status as "

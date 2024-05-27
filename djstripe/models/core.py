@@ -1866,11 +1866,12 @@ class Product(StripeModel):
     )
 
     # Fields applicable to `good` only
-    active = models.NullBooleanField(
+    active = models.BooleanField(
         help_text=(
             "Whether the product is currently available for purchase. "
             "Only applicable to products of `type=good`."
-        )
+        ),
+        null=True
     )
     attributes = JSONField(
         null=True,
@@ -1914,7 +1915,7 @@ class Product(StripeModel):
             "own `package_dimensions`. Only applicable to products of `type=good`."
         ),
     )
-    shippable = models.NullBooleanField(
+    shippable = models.BooleanField(
         null=True,
         blank=True,
         help_text=(

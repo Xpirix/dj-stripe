@@ -5,7 +5,7 @@ from datetime import timedelta
 from django.apps import apps
 from django.db import IntegrityError, models, transaction
 from django.utils import dateformat, timezone
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str as smart_text
 
 from .. import settings as djstripe_settings
 from ..fields import JSONField, StripeDateTimeField, StripeIdField
@@ -29,7 +29,7 @@ class StripeModel(models.Model):
     )
 
     id = StripeIdField(unique=True)
-    livemode = models.NullBooleanField(
+    livemode = models.BooleanField(
         default=None,
         null=True,
         blank=True,
